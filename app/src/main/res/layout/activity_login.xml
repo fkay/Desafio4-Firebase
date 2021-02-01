@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/login_card"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfLoginEmail"
+            android:layout_width="match_parent"
+            style="@style/TextInputCustom"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edLoginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/editText"
+                android:paddingStart="2dp"
+                android:paddingBottom="2dp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfLoginSenha"
+            android:layout_width="match_parent"
+            style="@style/TextInputCustom"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edLoginSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/editText"
+                android:paddingStart="2dp"
+                android:paddingBottom="2dp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbLoginLembrar"
+            style="@style/CheckBoxInputCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/remember"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="14dp"
+            android:checked="false"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoginLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/log_in"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="45dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoginRegistrar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account"
+            android:textColor="#00A6FF"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
