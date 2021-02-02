@@ -8,11 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#FF5252</color>
-    <color name="primaryVariant">#BB1C1F</color>
+    <color name="primaryVariant">#00796B</color>
     <color name="onPrimary">@color/white</color>
-    <color name="fill">#00162C</color>
+    <color name="fill">#DDDDDD</color>
     <color name="editText">#009688</color>
     <color name="grayText">#8492A6</color>
     <color name="lightGrayText">#343F4B</color>
+    <color name="cardTextTitle">#1F2D3D</color>
     <color name="editLine">#C0CCDA</color>
 </resources>
