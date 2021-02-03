@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Desafio4">
-        <activity android:name=".view.activity.DetalhesJogoActivity"></activity>
+        <activity android:name=".view.activity.EditarJogoActivity"></activity>
+        <activity android:name=".view.activity.DetalhesJogoActivity" />
         <activity
             android:name=".view.activity.HomeActivity"
             android:launchMode="singleTop">

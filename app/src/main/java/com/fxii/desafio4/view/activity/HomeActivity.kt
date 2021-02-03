@@ -30,6 +30,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupObservables() {
+        // botão adicionar
+        binding.fabHomeAdicionar.setOnClickListener {
+            val intent = Intent(this, EditarJogoActivity::class.java)
+            startActivity(intent)
+        }
+
+        // configuração da busca
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         binding.svHomeBuscar.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         binding.svHomeBuscar.setIconifiedByDefault(false)

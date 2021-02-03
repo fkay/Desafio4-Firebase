@@ -1,5 +1,6 @@
 package com.fxii.desafio4.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.fxii.desafio4.databinding.ActivityDetalhesJogoBinding
@@ -16,6 +17,14 @@ class DetalhesJogoActivity : AppCompatActivity() {
     }
 
     private fun setupObservables() {
+        binding.btnDetalhesEditar.setOnClickListener {
+            val intent = Intent(this, EditarJogoActivity::class.java)
+            // tem um putExtra aqui
+            startActivity(intent)
+        }
 
+        binding.btnDetalhesVoltar.setOnClickListener {
+            finish()
+        }
     }
 }

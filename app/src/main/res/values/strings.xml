@@ -8,4 +8,7 @@
     <string name="name">Name</string>
     <string name="repeat_password">Repeat password</string>
     <string name="search_games">Search Games</string>
+    <string name="created_at">Created at</string>
+    <string name="description">Description</string>
+    <string name="save_game">Save Game</string>
 </resources>
