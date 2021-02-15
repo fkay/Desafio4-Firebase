@@ -10,6 +10,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.fxii.desafio4.databinding.ActivityHomeBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -70,6 +72,14 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // ao fechar porenquanto sempre recomeca o login (falta um botao para logoff)
+        Firebase.auth.signOut()
+        //val intent = Intent(this, LoginActivity::class.java)
+        //startActivity(intent)
     }
 
     override fun onNewIntent(intent: Intent) {
