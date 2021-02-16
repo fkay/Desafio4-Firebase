@@ -11,4 +11,6 @@
     <string name="created_at">Created at</string>
     <string name="description">Description</string>
     <string name="save_game">Save Game</string>
+    <string name="campo_obrigatorio">%1$s is Required</string>
+    <string name="formato_email_invalido">Invalid Email Format</string>
 </resources>

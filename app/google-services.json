@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1036730780002",
+    "project_id": "dh-desafio4",
+    "storage_bucket": "dh-desafio4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036730780002:android:1e877a262648fff96a043b",
+        "android_client_info": {
+          "package_name": "com.fxii.desafio4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036730780002-16i9mcc639a3i0h1k7q6so46d4o5s7u6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fxii.desafio4",
+            "certificate_hash": "005f475a1bd1ab55985dd60df134645106fd13c3"
+          }
+        },
+        {
+          "client_id": "1036730780002-291388bljtc51l60rn966tvn0naffbbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvRB7t3hecQtHbUbXXI7BugGdMMSlnvtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036730780002-291388bljtc51l60rn966tvn0naffbbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

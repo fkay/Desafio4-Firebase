@@ -7,12 +7,20 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.fxii.desafio4.databinding.ActivityHomeBinding
+import com.fxii.desafio4.view.adapter.JogoAdapter
+import com.fxii.desafio4.viewModel.HomeViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +34,34 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+
         setupObservables()
+
+        homeViewModel.getJogos()
     }
 
     private fun setupObservables() {
+        homeViewModel.errMessage.observe(this) { erroMsg ->
+            Toast.makeText(baseContext, erroMsg,
+                Toast.LENGTH_SHORT).show()
+        }
+
+        homeViewModel.jogos.observe(this) { it ->
+            it?.let { jogos ->
+                binding.rvHomeGames.apply {
+                    adapter = JogoAdapter(jogos) { position ->
+                        Log.i("Teste", "Clicou no jogo na posicao ${position + 1}, com nome ${jogos[position].nome}")
+                        // inicia a intent dos detalhes
+                    }
+                }
+            }
+        }
+
         // botão adicionar
         binding.fabHomeAdicionar.setOnClickListener {
             val intent = Intent(this, EditarJogoActivity::class.java)
+            intent.putExtra("JOGO_ID", 1)
             startActivity(intent)
         }
 
@@ -70,6 +99,14 @@ class HomeActivity : AppCompatActivity() {
                     }
                 }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // ao fechar porenquanto sempre recomeca o login (falta um botao para logoff)
+        Firebase.auth.signOut()
+        //val intent = Intent(this, LoginActivity::class.java)
+        //startActivity(intent)
     }
 
     override fun onNewIntent(intent: Intent) {
