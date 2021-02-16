@@ -1,5 +1,6 @@
 package com.fxii.desafio4.viewModel
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,12 +20,12 @@ class EditarJogoViewModel: ViewModel() {
         EditarJogoBusiness()
     }
 
-    fun saveJogo(nome: String, descricao: String, lancamento: Int) {
+    fun saveJogo(nome: String, descricao: String, lancamento: Int, imagem: Uri) {
         val id = nome.toLowerCase().replace(' ', '_')
         val jogo = Jogo(id = id, nome = nome, descricao = descricao, lancamento = lancamento)
         viewModelScope.launch {
             try {
-                editarJogoBusiness.saveJogo(jogo)
+                editarJogoBusiness.saveJogo(jogo, imagem)
                 jogoSalvo.postValue(true)
             } catch(e: Exception) {
                 errorMsg.postValue(e.message)
