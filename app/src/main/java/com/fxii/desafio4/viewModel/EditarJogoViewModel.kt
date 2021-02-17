@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class EditarJogoViewModel: ViewModel() {
     val errorMsg: MutableLiveData<String> = MutableLiveData()
     val jogoSalvo: MutableLiveData<Boolean> = MutableLiveData()
+    val jogo: MutableLiveData<Jogo> = MutableLiveData()
 
     init {
         jogoSalvo.value = false
@@ -30,6 +31,12 @@ class EditarJogoViewModel: ViewModel() {
             } catch(e: Exception) {
                 errorMsg.postValue(e.message)
             }
+        }
+    }
+
+    fun getJogo(jogoId: String) {
+        viewModelScope.launch {
+            jogo.postValue(editarJogoBusiness.getJogo(jogoId))
         }
     }
 }

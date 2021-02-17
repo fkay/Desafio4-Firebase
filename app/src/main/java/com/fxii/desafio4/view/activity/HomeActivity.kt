@@ -50,11 +50,11 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.jogos.observe(this) { it ->
             it?.let { jogos ->
                 binding.rvHomeGames.apply {
-                    adapter = JogoAdapter(jogos) { position ->
-                        Log.i("Teste", "Clicou no jogo na posicao ${position + 1}, com nome ${jogos[position].nome}")
+                    adapter = JogoAdapter(jogos) { jogoId ->
+                        Log.i("Teste", "Clicou no jogo de id $jogoId")
                         // inicia a intent dos detalhes
                         val intent = Intent(this@HomeActivity, DetalhesJogoActivity::class.java)
-                        intent.putExtra("JOGO", jogos[position])
+                        intent.putExtra("JOGO", jogoId)
                         startActivity(intent)
                     }
                 }

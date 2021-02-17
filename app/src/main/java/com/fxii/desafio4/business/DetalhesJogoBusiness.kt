@@ -5,21 +5,13 @@ import com.fxii.desafio4.repositories.JogosRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class EditarJogoBusiness {
+class DetalhesJogoBusiness {
     private val jogosRepository by lazy {
         JogosRepository()
     }
 
     private val auth by lazy {
         Firebase.auth
-    }
-
-    suspend fun saveJogo(jogo: Jogo) {
-        try {
-            jogosRepository.saveJogo(jogo, auth.currentUser?.uid ?: "")
-        } catch (e: Exception) {
-            throw e
-        }
     }
 
     suspend fun getJogo(jogoId: String): Jogo? {

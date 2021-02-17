@@ -11,10 +11,10 @@ import com.fxii.desafio4.databinding.ItemHomeGamesBinding
 import com.fxii.desafio4.model.Jogo
 
 class JogoAdapter(private val jogos: List<Jogo>,
-    private val onItemJogoClicked: (Int) -> Unit):RecyclerView.Adapter<JogoAdapter.ViewHolder>() {
+    private val onItemJogoClicked: (String) -> Unit):RecyclerView.Adapter<JogoAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemHomeGamesBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(jogo: Jogo, onItemJogoClicked: (Int) -> Unit):Unit = with(itemView) {
+        fun bind(jogo: Jogo, onItemJogoClicked: (String) -> Unit):Unit = with(itemView) {
             with(binding) {
                 val circularProgressDrawable = CircularProgressDrawable(context)
                 circularProgressDrawable.strokeWidth = 5f
@@ -34,7 +34,7 @@ class JogoAdapter(private val jogos: List<Jogo>,
                 tvItemGamesAno.text = jogo.lancamento.toString()
 
                 cvItemGamesCard.setOnClickListener {
-                    onItemJogoClicked(adapterPosition)
+                    onItemJogoClicked(jogo.id ?: "")
                 }
             }
         }
