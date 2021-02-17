@@ -20,12 +20,12 @@ class EditarJogoViewModel: ViewModel() {
         EditarJogoBusiness()
     }
 
-    fun saveJogo(nome: String, descricao: String, lancamento: Int, imagem: Uri) {
+    fun saveJogo(nome: String, descricao: String, lancamento: Int, imagem: Uri?) {
         val id = nome.toLowerCase().replace(' ', '_')
-        val jogo = Jogo(id = id, nome = nome, descricao = descricao, lancamento = lancamento)
+        val jogo = Jogo(id = id, nome = nome, descricao = descricao, lancamento = lancamento, imagem = imagem)
         viewModelScope.launch {
             try {
-                editarJogoBusiness.saveJogo(jogo, imagem)
+                editarJogoBusiness.saveJogo(jogo)
                 jogoSalvo.postValue(true)
             } catch(e: Exception) {
                 errorMsg.postValue(e.message)

@@ -1,9 +1,12 @@
 package com.fxii.desafio4.view.adapter
 
+import android.graphics.Rect
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.fxii.desafio4.GlideApp
+import com.fxii.desafio4.R
 import com.fxii.desafio4.databinding.ItemHomeGamesBinding
 import com.fxii.desafio4.model.Jogo
 
@@ -12,12 +15,27 @@ class JogoAdapter(private val jogos: List<Jogo>,
 
     class ViewHolder(val binding: ItemHomeGamesBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(jogo: Jogo, onItemJogoClicked: (Int) -> Unit):Unit = with(itemView) {
-            // carrega imagens
-
-            // carrega valores
             with(binding) {
+                val circularProgressDrawable = CircularProgressDrawable(context)
+                circularProgressDrawable.strokeWidth = 5f
+                circularProgressDrawable.centerRadius = 30f
+                circularProgressDrawable.bounds = Rect(0,0, circularProgressDrawable.intrinsicWidth, circularProgressDrawable.intrinsicHeight/2)
+                circularProgressDrawable.start()
+
+                // carrega imagens
+                GlideApp.with(context)
+                        .load(jogo.imagem)
+                        .placeholder(circularProgressDrawable)
+                        .error(R.drawable.ic_baseline_error_outline_48)
+                        .into(ivItemGamesCapa)
+
+                // carrega valores
                 tvItemGamesTitulo.text = jogo.nome
                 tvItemGamesAno.text = jogo.lancamento.toString()
+
+                cvItemGamesCard.setOnClickListener {
+                    onItemJogoClicked(adapterPosition)
+                }
             }
         }
     }

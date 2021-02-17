@@ -14,7 +14,8 @@ buildscript {
             'coroutines'            :"1.4.1",
             'circle_image_view'     :"3.1.0",
             'google_services'       :"4.3.5",
-            'coroutines_play_svcs'  :"1.1.1"
+            'coroutines_play_svcs'  :"1.1.1",
+            'swiperefreshlayout'    :"1.1.0"
     ]
     repositories {
         google()

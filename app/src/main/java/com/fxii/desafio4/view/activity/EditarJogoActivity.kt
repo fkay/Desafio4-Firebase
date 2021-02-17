@@ -14,9 +14,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.fxii.desafio4.GlideApp
 import com.fxii.desafio4.R
 import com.fxii.desafio4.databinding.ActivityEditarJogoBinding
 import com.fxii.desafio4.extensions.validateRequiredField
+import com.fxii.desafio4.model.Jogo
 import com.fxii.desafio4.viewModel.EditarJogoViewModel
 
 class EditarJogoActivity : AppCompatActivity() {
@@ -24,7 +27,7 @@ class EditarJogoActivity : AppCompatActivity() {
 
     private lateinit var editarJogoViewModel: EditarJogoViewModel
 
-    private var jogoId: String? = null
+    private var jogo: Jogo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,29 @@ class EditarJogoActivity : AppCompatActivity() {
 
         editarJogoViewModel = ViewModelProvider(this).get(EditarJogoViewModel::class.java)
 
+        jogo = intent.getParcelableExtra<Jogo>("JOGO")
+
+
+        setupView()
+
         setupObservables()
+    }
+
+    private fun setupView() {
+        jogo?.let { jogo ->
+            with(binding) {
+                edEditarJogoNome.setText(jogo.nome)
+                // nome do jogo é o id no Firestore, não deixa editar
+                tfEditarJogoNome.isEnabled = false
+                edEditarJogoDescricao.setText(jogo.descricao)
+                edEditarJogoAno.setText(jogo.lancamento.toString())
+                ivEditarJogoCapa.tag = "EDITANDO"
+
+                GlideApp.with(this@EditarJogoActivity)
+                        .load(jogo.imagem)
+                        .into(ivEditarJogoCapa)
+            }
+        }
     }
 
     private fun setupObservables() {
@@ -55,7 +80,9 @@ class EditarJogoActivity : AppCompatActivity() {
                     val nome = edEditarJogoNome.text.toString()
                     val lancamento = edEditarJogoAno.text.toString().toInt()
                     val descricao = edEditarJogoDescricao.text.toString()
-                    val imagem = ivEditarJogoCapa.tag as Uri
+                    var imagem:Uri? = null
+                    if(! ivEditarJogoCapa.tag.equals("EDITANDO"))
+                        imagem = ivEditarJogoCapa.tag as Uri
                     editarJogoViewModel.saveJogo(nome, descricao, lancamento, imagem)
                 }
             }
