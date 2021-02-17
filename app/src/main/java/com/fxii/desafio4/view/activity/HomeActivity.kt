@@ -53,6 +53,9 @@ class HomeActivity : AppCompatActivity() {
                     adapter = JogoAdapter(jogos) { position ->
                         Log.i("Teste", "Clicou no jogo na posicao ${position + 1}, com nome ${jogos[position].nome}")
                         // inicia a intent dos detalhes
+                        val intent = Intent(this@HomeActivity, DetalhesJogoActivity::class.java)
+                        intent.putExtra("JOGO", jogos[position])
+                        startActivity(intent)
                     }
                 }
             }
@@ -79,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
                 ) {
                     val position = parent.getChildAdapterPosition(view); // item position
                     val spanCount = 2;
-                    val spacing = 10;//spacing between views in grid
+                    val spacing = 6;//spacing between views in grid
 
                     if (position >= 0) {
                         val column = position % spanCount; // item column

@@ -86,6 +86,8 @@ dependencies {
     /* coroutines support for firebase operations */
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${versions.coroutines_play_svcs}"
 
+    // loading on glide
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefreshlayout}"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
