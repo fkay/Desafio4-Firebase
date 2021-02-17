@@ -38,6 +38,11 @@ class HomeActivity : AppCompatActivity() {
 
         setupObservables()
 
+        //homeViewModel.getJogos()
+    }
+
+    override fun onResume() {
+        super.onResume()
         homeViewModel.getJogos()
     }
 
