@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.fxii.desafio4.databinding.ActivityHomeBinding
@@ -21,6 +22,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
     private lateinit var homeViewModel: HomeViewModel
+
+    private var filtro: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +81,29 @@ class HomeActivity : AppCompatActivity() {
         binding.svHomeBuscar.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         binding.svHomeBuscar.setIconifiedByDefault(false)
 
+        binding.svHomeBuscar.setOnCloseListener {
+            Log.i("Pesquisa", "pesquisa foi limpada")
+            true
+        }
+
+        binding.svHomeBuscar.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    val adapter = binding.rvHomeGames.adapter as JogoAdapter
+                    if(it.length >= 3) {
+                        adapter.filter.filter(it)
+                    } else {
+                        adapter.filter.filter(null)
+                    }
+                }
+                return false
+            }
+        })
+
         binding.rvHomeGames.addItemDecoration(object: RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -122,6 +148,7 @@ class HomeActivity : AppCompatActivity() {
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             Log.i("Pesquisa", query ?: "sem texto")
+            filtro = query
         }
     }
 }
