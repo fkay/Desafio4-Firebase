@@ -34,6 +34,10 @@ class HomeActivity : AppCompatActivity() {
         if (Intent.ACTION_SEARCH == intent.action) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
                 Log.i("Pesquisa", query)
+//                binding.rvHomeGames.adapter?.let {
+//                    (it as JogoAdapter).filter.filter(query)
+//                }
+                binding.svHomeBuscar.setQuery(query, true)
             }
         }
 
@@ -44,8 +48,8 @@ class HomeActivity : AppCompatActivity() {
         //homeViewModel.getJogos()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         homeViewModel.getJogos()
     }
 
@@ -88,7 +92,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.svHomeBuscar.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -148,7 +152,12 @@ class HomeActivity : AppCompatActivity() {
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             Log.i("Pesquisa", query ?: "sem texto")
-            filtro = query
+            query?.let {
+//                binding.rvHomeGames.adapter?.let {
+//                    (it as JogoAdapter).filter.filter(query)
+//                }
+                binding.svHomeBuscar.setQuery(query, true)
+            }
         }
     }
 }
